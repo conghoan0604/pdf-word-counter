@@ -1,4 +1,9 @@
 .idea/
 out/
 resources/
+results/
+tokenizer.log
 WordCountPDF.iml
+
+!resources/.gitkeep
+!results/.gitkeep
