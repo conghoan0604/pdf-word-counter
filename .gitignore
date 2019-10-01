@@ -3,7 +3,8 @@ out/
 resources/
 results/
 tokenizer.log
-WordCountPDF.iml
+tokenizer.log.lck
+*.iml
 
 !resources/.gitkeep
 !results/.gitkeep
