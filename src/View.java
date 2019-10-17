@@ -15,19 +15,20 @@ class View extends JFrame {
     private File file;
     private JTextArea resultArea;
     private JTextArea textArea;
-    private JButton btnChonFile;
+    private JButton btnChooseFile;
     private JButton btnCountWord;
+    private JButton btnStopWords;
+    private JButton btnPdfStopWords;
+    private JButton btnTokenizedText;
     private JScrollPane scrollPane;
     private JScrollPane scrollPane_1;
     private JTextField filePathField;
 
-    /**
-     * Create the frame.
-     */
     View() {
+    	setFont(new Font("Dialog", Font.PLAIN, 20));
         setTitle("WordCountPDF");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 380);
+        setSize(900, 500);
         setLocationRelativeTo(null);
         contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -46,13 +47,14 @@ class View extends JFrame {
         contentPane.add(mainPane, BorderLayout.CENTER);
 
         GridBagLayout gbl_mainPane = new GridBagLayout();
-        gbl_mainPane.columnWidths = new int[]{0, 0, 0, 0};
-        gbl_mainPane.rowHeights = new int[]{38, 104, 0, 104, 0};
-        gbl_mainPane.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-        gbl_mainPane.rowWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+        gbl_mainPane.columnWidths = new int[]{0, 0, 0, 0, 0};
+        gbl_mainPane.rowHeights = new int[]{38, 104, 0, 0, 0, 104, 0};
+        gbl_mainPane.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+        gbl_mainPane.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
         mainPane.setLayout(gbl_mainPane);
 
         JLabel lblFile = new JLabel("File:");
+        lblFile.setFont(new Font("Tahoma", Font.PLAIN, 20));
         GridBagConstraints gbc_lblFile = new GridBagConstraints();
         gbc_lblFile.insets = new Insets(0, 0, 5, 5);
         gbc_lblFile.anchor = GridBagConstraints.WEST;
@@ -61,23 +63,27 @@ class View extends JFrame {
         mainPane.add(lblFile, gbc_lblFile);
 
         filePathField = new JTextField();
+        filePathField.setFont(new Font("Tahoma", Font.PLAIN, 20));
         GridBagConstraints gbc_filePathField = new GridBagConstraints();
         gbc_filePathField.insets = new Insets(0, 0, 5, 5);
-        gbc_filePathField.fill = GridBagConstraints.HORIZONTAL;
+        gbc_filePathField.fill = GridBagConstraints.BOTH;
         gbc_filePathField.gridx = 1;
         gbc_filePathField.gridy = 0;
         mainPane.add(filePathField, gbc_filePathField);
         filePathField.setColumns(10);
 
-        btnChonFile = new JButton("Chọn file .pdf");
+        btnChooseFile = new JButton("Chọn file .pdf");
+        btnChooseFile.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-        GridBagConstraints gbc_btnChonFile = new GridBagConstraints();
-        gbc_btnChonFile.insets = new Insets(0, 0, 5, 0);
-        gbc_btnChonFile.gridx = 2;
-        gbc_btnChonFile.gridy = 0;
-        mainPane.add(btnChonFile, gbc_btnChonFile);
+        GridBagConstraints gbc_btnChooseFile = new GridBagConstraints();
+        gbc_btnChooseFile.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnChooseFile.insets = new Insets(0, 0, 5, 0);
+        gbc_btnChooseFile.gridx = 3;
+        gbc_btnChooseFile.gridy = 0;
+        mainPane.add(btnChooseFile, gbc_btnChooseFile);
 
-        JLabel lblText = new JLabel("Text:");
+        JLabel lblText = new JLabel("Nội dung văn bản:");
+        lblText.setFont(new Font("Tahoma", Font.PLAIN, 20));
         GridBagConstraints gbc_lblText = new GridBagConstraints();
         gbc_lblText.anchor = GridBagConstraints.WEST;
         gbc_lblText.insets = new Insets(0, 0, 5, 5);
@@ -94,22 +100,47 @@ class View extends JFrame {
         mainPane.add(scrollPane, gbc_scrollPane);
 
         textArea = new JTextArea();
+        textArea.setFont(new Font("Monospaced", Font.PLAIN, 20));
         scrollPane.setViewportView(textArea);
-
-        btnCountWord = new JButton("Count");
+        
+        btnStopWords = new JButton("Từ điển từ dừng");
+        btnStopWords.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        GridBagConstraints gbc_btnStopWords = new GridBagConstraints();
+        gbc_btnStopWords.insets = new Insets(0, 0, 5, 0);
+        gbc_btnStopWords.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnStopWords.gridx = 3;
+        gbc_btnStopWords.gridy = 1;
+        mainPane.add(btnStopWords, gbc_btnStopWords);
+        gbc_btnStopWords.gridx = 3;
+        gbc_btnStopWords.gridy = 2;
+        
+        btnCountWord = new JButton("Đếm số từ");
+        btnCountWord.setFont(new Font("Tahoma", Font.PLAIN, 20));
         GridBagConstraints gbc_btnCountWord = new GridBagConstraints();
-        gbc_btnCountWord.anchor = GridBagConstraints.WEST;
         gbc_btnCountWord.insets = new Insets(0, 0, 5, 5);
+        gbc_btnCountWord.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnCountWord.gridx = 1;
-        gbc_btnCountWord.gridy = 2;
+        gbc_btnCountWord.gridy = 3;
         mainPane.add(btnCountWord, gbc_btnCountWord);
+        gbc_btnCountWord.gridx = 2;
+        gbc_btnCountWord.gridy = 3;
+        
+        btnTokenizedText = new JButton("Nhận diện từ");
+        btnTokenizedText.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        GridBagConstraints gbc_btnTokenizedText = new GridBagConstraints();
+        gbc_btnTokenizedText.insets = new Insets(0, 0, 5, 0);
+        gbc_btnTokenizedText.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnTokenizedText.gridx = 3;
+        gbc_btnTokenizedText.gridy = 3;
+        mainPane.add(btnTokenizedText, gbc_btnTokenizedText);
 
-        JLabel lblResult = new JLabel("Result:");
+        JLabel lblResult = new JLabel("Kết quả:");
+        lblResult.setFont(new Font("Tahoma", Font.PLAIN, 20));
         GridBagConstraints gbc_lblResult = new GridBagConstraints();
         gbc_lblResult.anchor = GridBagConstraints.WEST;
         gbc_lblResult.insets = new Insets(0, 0, 0, 5);
         gbc_lblResult.gridx = 0;
-        gbc_lblResult.gridy = 3;
+        gbc_lblResult.gridy = 5;
         mainPane.add(lblResult, gbc_lblResult);
 
         scrollPane_1 = new JScrollPane();
@@ -117,16 +148,31 @@ class View extends JFrame {
         gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
         gbc_scrollPane_1.insets = new Insets(0, 0, 0, 5);
         gbc_scrollPane_1.gridx = 1;
-        gbc_scrollPane_1.gridy = 3;
+        gbc_scrollPane_1.gridy = 5;
         mainPane.add(scrollPane_1, gbc_scrollPane_1);
 
         resultArea = new JTextArea();
+        resultArea.setFont(new Font("Monospaced", Font.PLAIN, 20));
         scrollPane_1.setViewportView(resultArea);
+
+        btnPdfStopWords = new JButton("Từ dừng trong file");
+        btnPdfStopWords.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        GridBagConstraints gbc_btnPdfStopWords = new GridBagConstraints();
+        gbc_btnPdfStopWords.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnPdfStopWords.gridx = 3;
+        gbc_btnPdfStopWords.gridy = 5;
+        mainPane.add(btnPdfStopWords, gbc_btnPdfStopWords);
+        gbc_btnPdfStopWords.gridx = 3;
+        gbc_btnPdfStopWords.gridy = 2;
 
     }
 
     void setResult(int result){
         resultArea.setText(String.valueOf(result));
+    }
+
+    void setTextResult(String result) {
+        resultArea.setText(result);
     }
 
     void setText(String text){
@@ -145,9 +191,12 @@ class View extends JFrame {
         this.filePathField.setText(filePath);
     }
 
-    void addActionListener(ActionListener btnChoooseAL, ActionListener btnCountAL, ActionListener btnAbout){
-        btnChonFile.addActionListener(btnChoooseAL);
+    void addActionListener(ActionListener btnChooseAL, ActionListener btnCountAL, ActionListener btnAbout, ActionListener btnStopWordsAL, ActionListener btnTokenizedTextAL, ActionListener btnPdfStopWordsAL){
+        btnChooseFile.addActionListener(btnChooseAL);
         btnCountWord.addActionListener(btnCountAL);
+        btnStopWords.addActionListener(btnStopWordsAL);
+        btnPdfStopWords.addActionListener(btnPdfStopWordsAL);
+        btnTokenizedText.addActionListener(btnTokenizedTextAL);
         mnhAbout.addActionListener(btnAbout);
     }
 

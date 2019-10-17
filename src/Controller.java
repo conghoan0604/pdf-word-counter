@@ -14,7 +14,7 @@ class Controller {
     Controller(View theView, Model theModel) {
         this.theView = theView;
         this.theModel = theModel;
-        this.theView.addActionListener(new  btnChooseActionListener(), new btnCountActionListener(), new btnAboutActionListener());
+        this.theView.addActionListener(new  btnChooseActionListener(), new btnCountActionListener(), new btnAboutActionListener(), new btnStopWordsActionListener(), new btnTokenizedTextActionListener(), new btnPdfStopWordsActionListener());
     }
 
     public class btnCountActionListener implements ActionListener {
@@ -53,6 +53,27 @@ class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             JOptionPane.showMessageDialog(null, "Danh sách thành viên \n - Ngô Công Hoan - 16001788 \n - Nguyễn Sơn Tùng - 16001888 \n - Đào Hồng Hà - 16001775", "Thông tin nhóm", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public class btnStopWordsActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            theView.setTextResult(theModel.getStopWords());
+        }
+    }
+
+    public class btnPdfStopWordsActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            theView.setTextResult(theModel.getPdfStopWords());
+        }
+    }
+
+    public class btnTokenizedTextActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            theView.setTextResult(theModel.getTokenizedText());
         }
     }
 }

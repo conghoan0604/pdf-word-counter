@@ -17,9 +17,11 @@ import vn.hus.nlp.tokenizer.VietTokenizer;
 class Model {
     private String originalText;
     private String tokenizedText;
+    private HashSet<String> pdfStopWords = new HashSet<>();
     private String resourcePath = "resources/";
     private String resultPath = "results/";
     private String stopWordsFile = resourcePath + "StopWords.txt";
+    private HashSet<String> stopWords = new HashSet<>();
     private String originalTextFile = resultPath + "1.OriginalText.txt";
     private String tokenizedTextFile = resultPath + "2.TokenizedText.txt";
     private String cleanedTextFile = resultPath + "3.CleanedText.txt";
@@ -64,7 +66,6 @@ class Model {
     }
 
     private HashSet<String> loadStopWords() {
-        HashSet<String> stopWords = new HashSet<>();
         BufferedReader bufferedReader = null;
 
         try {
@@ -135,10 +136,9 @@ class Model {
 
         for (String word : wordList) {
             if (!stopWords.contains(word)) {
-                System.out.printf("Nonstop [%s]\n", word);
                 count++;
             } else {
-                System.out.println(word);
+                pdfStopWords.add(word);
             }
         }
 
@@ -146,7 +146,6 @@ class Model {
     }
 
     private String cleanString(String string) {
-//        return string.replaceAll("[0-9!-/\\[-`:-@{-~]", " ").replaceAll("\\z", " ").replaceAll("\\s\\s+", " ").toLowerCase();
         return string.replaceAll("[\r\n|\r|\n0-9$&+,:;=?@#|'<>.^*()%!-/\\\\{}\\[\\]`~]", " ").replaceAll("\\s\\s+", " ").toLowerCase();
     }
 
@@ -158,7 +157,7 @@ class Model {
         VietTokenizer tokenizer = new VietTokenizer();
         tokenizer.tokenize(originalTextFile, tokenizedTextFile);
 
-        String tokenizedText = loadTxt();
+        tokenizedText = loadTxt();
         ArrayList<String> wordList = convertTextToWordList(tokenizedText);
 
         String cleanedText = cleanString(tokenizedText);
@@ -175,7 +174,15 @@ class Model {
     }
 
     String getTokenizedText() {
-        return tokenizedText;
+        return cleanString(tokenizedText);
+    }
+
+    String getPdfStopWords() {
+        return pdfStopWords.toString();
+    }
+
+    String getStopWords() {
+        return stopWords.toString();
     }
 
     int getResult() {
