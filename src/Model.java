@@ -134,9 +134,10 @@ class Model {
         int count = 0;
 
         for (String word : wordList) {
-            if (!stopWords.contains(word))
+            if (!stopWords.contains(word)) {
+                System.out.printf("Nonstop [%s]\n", word);
                 count++;
-            else {
+            } else {
                 System.out.println(word);
             }
         }
@@ -145,8 +146,8 @@ class Model {
     }
 
     private String cleanString(String string) {
-        return string.replaceAll("[0-9!-/\\[-`:-@{-~]", " ").replaceAll("\\z", " ").replaceAll("\\s\\s+", " ").toLowerCase();
-//        return string.replaceAll("[\r\n|\r|\n0-9$&+,:;=?@#|'<>.^*()%!-/\\\\{}\\[\\]`~]", " ").replaceAll("\\s\\s+", " ").toLowerCase();
+//        return string.replaceAll("[0-9!-/\\[-`:-@{-~]", " ").replaceAll("\\z", " ").replaceAll("\\s\\s+", " ").toLowerCase();
+        return string.replaceAll("[\r\n|\r|\n0-9$&+,:;=?@#|'<>.^*()%!-/\\\\{}\\[\\]`~]", " ").replaceAll("\\s\\s+", " ").toLowerCase();
     }
 
 
@@ -162,6 +163,7 @@ class Model {
 
         String cleanedText = cleanString(tokenizedText);
         writeToFile(cleanedTextFile, cleanedText);
+        wordList = convertTextToWordList(cleanedText);
 
         HashSet<String> stopWords = loadStopWords();
 
