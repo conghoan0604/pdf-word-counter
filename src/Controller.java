@@ -14,7 +14,7 @@ class Controller {
     Controller(View theView, Model theModel) {
         this.theView = theView;
         this.theModel = theModel;
-        this.theView.addActionListener(new  btnChooseActionListener(), new btnCountActionListener(), new btnAboutActionListener(), new btnStopWordsActionListener(), new btnTokenizedTextActionListener(), new btnPdfStopWordsActionListener());
+        this.theView.addActionListener(new  btnChooseActionListener(), new btnCountActionListener(), new btnAboutActionListener(), new btnTokenizedTextActionListener(), new btnPdfStopWordsActionListener());
     }
 
     public class btnCountActionListener implements ActionListener {
@@ -43,7 +43,7 @@ class Controller {
 
             } catch (IOException e1) {
                 e1.printStackTrace();
-                theView.displayError("Loi trong qua trinh doc file");
+                theView.displayError("Đã xảy ra lỗi, vui lòng kiểm tra lại!");
             }
         }
 
@@ -56,12 +56,12 @@ class Controller {
         }
     }
 
-    public class btnStopWordsActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            theView.setTextResult(theModel.getStopWords());
-        }
-    }
+//    public class btnStopWordsActionListener implements ActionListener {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            theView.setTextResult(theModel.getStopWords());
+//        }
+//    }
 
     public class btnPdfStopWordsActionListener implements ActionListener {
         @Override

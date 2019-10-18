@@ -3,7 +3,7 @@ import java.awt.event.*;
 import java.io.File;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.*;
 
 class View extends JFrame {
 
@@ -17,7 +17,7 @@ class View extends JFrame {
     private JTextArea textArea;
     private JButton btnChooseFile;
     private JButton btnCountWord;
-    private JButton btnStopWords;
+//    private JButton btnStopWords;
     private JButton btnPdfStopWords;
     private JButton btnTokenizedText;
     private JScrollPane scrollPane;
@@ -25,7 +25,7 @@ class View extends JFrame {
     private JTextField filePathField;
 
     View() {
-    	setFont(new Font("Dialog", Font.PLAIN, 20));
+    	setFont(new Font("Dialog", Font.PLAIN, 15));
         setTitle("WordCountPDF");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 500);
@@ -48,13 +48,13 @@ class View extends JFrame {
 
         GridBagLayout gbl_mainPane = new GridBagLayout();
         gbl_mainPane.columnWidths = new int[]{0, 0, 0, 0, 0};
-        gbl_mainPane.rowHeights = new int[]{38, 104, 0, 0, 0, 104, 0};
+        gbl_mainPane.rowHeights = new int[]{38, 104, 0, 104, 0};
         gbl_mainPane.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-        gbl_mainPane.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+        gbl_mainPane.rowWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
         mainPane.setLayout(gbl_mainPane);
 
         JLabel lblFile = new JLabel("File:");
-        lblFile.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        lblFile.setFont(new Font("Tahoma", Font.PLAIN, 15));
         GridBagConstraints gbc_lblFile = new GridBagConstraints();
         gbc_lblFile.insets = new Insets(0, 0, 5, 5);
         gbc_lblFile.anchor = GridBagConstraints.WEST;
@@ -63,7 +63,8 @@ class View extends JFrame {
         mainPane.add(lblFile, gbc_lblFile);
 
         filePathField = new JTextField();
-        filePathField.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        filePathField.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        filePathField.setEditable(false);
         GridBagConstraints gbc_filePathField = new GridBagConstraints();
         gbc_filePathField.insets = new Insets(0, 0, 5, 5);
         gbc_filePathField.fill = GridBagConstraints.BOTH;
@@ -73,7 +74,7 @@ class View extends JFrame {
         filePathField.setColumns(10);
 
         btnChooseFile = new JButton("Chọn file .pdf");
-        btnChooseFile.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnChooseFile.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
         GridBagConstraints gbc_btnChooseFile = new GridBagConstraints();
         gbc_btnChooseFile.fill = GridBagConstraints.HORIZONTAL;
@@ -83,7 +84,7 @@ class View extends JFrame {
         mainPane.add(btnChooseFile, gbc_btnChooseFile);
 
         JLabel lblText = new JLabel("Nội dung văn bản:");
-        lblText.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        lblText.setFont(new Font("Tahoma", Font.PLAIN, 15));
         GridBagConstraints gbc_lblText = new GridBagConstraints();
         gbc_lblText.anchor = GridBagConstraints.WEST;
         gbc_lblText.insets = new Insets(0, 0, 5, 5);
@@ -100,47 +101,51 @@ class View extends JFrame {
         mainPane.add(scrollPane, gbc_scrollPane);
 
         textArea = new JTextArea();
-        textArea.setFont(new Font("Monospaced", Font.PLAIN, 20));
+        textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
+        textArea.setEditable(false);
         scrollPane.setViewportView(textArea);
         
-        btnStopWords = new JButton("Từ điển từ dừng");
-        btnStopWords.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        GridBagConstraints gbc_btnStopWords = new GridBagConstraints();
-        gbc_btnStopWords.insets = new Insets(0, 0, 5, 0);
-        gbc_btnStopWords.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnStopWords.gridx = 3;
-        gbc_btnStopWords.gridy = 1;
-        mainPane.add(btnStopWords, gbc_btnStopWords);
-        gbc_btnStopWords.gridx = 3;
-        gbc_btnStopWords.gridy = 2;
-        
-        btnCountWord = new JButton("Đếm số từ");
-        btnCountWord.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        GridBagConstraints gbc_btnCountWord = new GridBagConstraints();
-        gbc_btnCountWord.insets = new Insets(0, 0, 5, 5);
-        gbc_btnCountWord.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnCountWord.gridx = 1;
-        gbc_btnCountWord.gridy = 3;
-        mainPane.add(btnCountWord, gbc_btnCountWord);
-        gbc_btnCountWord.gridx = 2;
-        gbc_btnCountWord.gridy = 3;
-        
         btnTokenizedText = new JButton("Nhận diện từ");
-        btnTokenizedText.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnTokenizedText.setFont(new Font("Tahoma", Font.PLAIN, 15));
         GridBagConstraints gbc_btnTokenizedText = new GridBagConstraints();
         gbc_btnTokenizedText.insets = new Insets(0, 0, 5, 0);
         gbc_btnTokenizedText.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnTokenizedText.gridx = 3;
-        gbc_btnTokenizedText.gridy = 3;
+        gbc_btnTokenizedText.gridy = 1;
         mainPane.add(btnTokenizedText, gbc_btnTokenizedText);
+        
+//        btnStopWords = new JButton("Từ điển từ dừng");
+//        btnStopWords.setFont(new Font("Tahoma", Font.PLAIN, 15));
+//        GridBagConstraints gbc_btnStopWords = new GridBagConstraints();
+//        gbc_btnStopWords.insets = new Insets(0, 0, 5, 0);
+//        gbc_btnStopWords.fill = GridBagConstraints.HORIZONTAL;
+//        gbc_btnStopWords.gridx = 3;
+//        gbc_btnStopWords.gridy = 1;
+//        mainPane.add(btnStopWords, gbc_btnStopWords);
+//        gbc_btnStopWords.gridx = 3;
+//        gbc_btnStopWords.gridy = 2;
+        
+        btnCountWord = new JButton("Đếm số từ");
+        btnCountWord.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        	}
+        });
+        btnCountWord.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        GridBagConstraints gbc_btnCountWord = new GridBagConstraints();
+        gbc_btnCountWord.insets = new Insets(0, 0, 5, 5);
+        gbc_btnCountWord.gridx = 1;
+        gbc_btnCountWord.gridy = 2;
+        mainPane.add(btnCountWord, gbc_btnCountWord);
+        gbc_btnCountWord.gridx = 2;
+        gbc_btnCountWord.gridy = 3;
 
         JLabel lblResult = new JLabel("Kết quả:");
-        lblResult.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        lblResult.setFont(new Font("Tahoma", Font.PLAIN, 15));
         GridBagConstraints gbc_lblResult = new GridBagConstraints();
         gbc_lblResult.anchor = GridBagConstraints.WEST;
         gbc_lblResult.insets = new Insets(0, 0, 0, 5);
         gbc_lblResult.gridx = 0;
-        gbc_lblResult.gridy = 5;
+        gbc_lblResult.gridy = 3;
         mainPane.add(lblResult, gbc_lblResult);
 
         scrollPane_1 = new JScrollPane();
@@ -148,19 +153,20 @@ class View extends JFrame {
         gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
         gbc_scrollPane_1.insets = new Insets(0, 0, 0, 5);
         gbc_scrollPane_1.gridx = 1;
-        gbc_scrollPane_1.gridy = 5;
+        gbc_scrollPane_1.gridy = 3;
         mainPane.add(scrollPane_1, gbc_scrollPane_1);
 
         resultArea = new JTextArea();
-        resultArea.setFont(new Font("Monospaced", Font.PLAIN, 20));
+        resultArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
+        resultArea.setEditable(false);
         scrollPane_1.setViewportView(resultArea);
-
-        btnPdfStopWords = new JButton("Từ dừng trong file");
-        btnPdfStopWords.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        
+        btnPdfStopWords = new JButton("Từ dừng");
+        btnPdfStopWords.setFont(new Font("Tahoma", Font.PLAIN, 15));
         GridBagConstraints gbc_btnPdfStopWords = new GridBagConstraints();
         gbc_btnPdfStopWords.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnPdfStopWords.gridx = 3;
-        gbc_btnPdfStopWords.gridy = 5;
+        gbc_btnPdfStopWords.gridy = 3;
         mainPane.add(btnPdfStopWords, gbc_btnPdfStopWords);
         gbc_btnPdfStopWords.gridx = 3;
         gbc_btnPdfStopWords.gridy = 2;
@@ -191,10 +197,9 @@ class View extends JFrame {
         this.filePathField.setText(filePath);
     }
 
-    void addActionListener(ActionListener btnChooseAL, ActionListener btnCountAL, ActionListener btnAbout, ActionListener btnStopWordsAL, ActionListener btnTokenizedTextAL, ActionListener btnPdfStopWordsAL){
+    void addActionListener(ActionListener btnChooseAL, ActionListener btnCountAL, ActionListener btnAbout, ActionListener btnTokenizedTextAL, ActionListener btnPdfStopWordsAL){
         btnChooseFile.addActionListener(btnChooseAL);
         btnCountWord.addActionListener(btnCountAL);
-        btnStopWords.addActionListener(btnStopWordsAL);
         btnPdfStopWords.addActionListener(btnPdfStopWordsAL);
         btnTokenizedText.addActionListener(btnTokenizedTextAL);
         mnhAbout.addActionListener(btnAbout);

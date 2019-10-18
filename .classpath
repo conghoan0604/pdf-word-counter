@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="libs/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/fontbox-2.0.16.jar"/>
+	<classpathentry kind="lib" path="libs/junit.jar"/>
+	<classpathentry kind="lib" path="libs/maxent-2.5.2.jar"/>
+	<classpathentry kind="lib" path="libs/opennlp-tools-1.4.3.jar"/>
+	<classpathentry kind="lib" path="libs/pdfbox-2.0.16.jar"/>
+	<classpathentry kind="lib" path="libs/pdfbox-app-2.0.16.jar"/>
+	<classpathentry kind="lib" path="libs/pdfbox-tools-2.0.16.jar"/>
+	<classpathentry kind="lib" path="libs/preflight-2.0.16.jar"/>
+	<classpathentry kind="lib" path="libs/trove.jar"/>
+	<classpathentry kind="lib" path="libs/vn.hus.nlp.fsm-1.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/vn.hus.nlp.sd-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/vn.hus.nlp.tokenizer-4.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/vn.hus.nlp.utils-1.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/xmpbox-2.0.16.jar"/>
+	<classpathentry kind="output" path="out/production/WordCountPDF"/>
+</classpath>
