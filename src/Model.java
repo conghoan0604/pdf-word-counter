@@ -133,6 +133,7 @@ class Model {
 
     private int countWord(ArrayList<String> wordList, HashSet<String> stopWords) {
         int count = 0;
+        pdfStopWords.clear();
 
         for (String word : wordList) {
             if (!stopWords.contains(word)) {
@@ -146,7 +147,7 @@ class Model {
     }
 
     private String cleanString(String string) {
-        return string.replaceAll("[\r\n|\r|\n0-9$&+,:;=?@#|'<>.^*()%!-/\\\\{}\\[\\]`~]", " ").replaceAll("\\s\\s+", " ").toLowerCase();
+        return string.replaceAll("\\r\\n", " ").replaceAll("[0-9$&+,:;=?@#|'<>.^*()%!-/\\\\{}\\[\\]`~’]", " ").replaceAll("\\s\\s+", " ").toLowerCase();
     }
 
 
