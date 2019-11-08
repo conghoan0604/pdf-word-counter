@@ -103,6 +103,8 @@ class View extends JFrame {
         textArea = new JTextArea();
         textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
         textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
         scrollPane.setViewportView(textArea);
         
         btnTokenizedText = new JButton("Nhận diện từ");
@@ -159,6 +161,8 @@ class View extends JFrame {
         resultArea = new JTextArea();
         resultArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
         resultArea.setEditable(false);
+        resultArea.setLineWrap(true);
+        resultArea.setWrapStyleWord(true);
         scrollPane_1.setViewportView(resultArea);
         
         btnPdfStopWords = new JButton("Từ dừng");
